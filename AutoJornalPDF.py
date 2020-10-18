@@ -102,13 +102,15 @@ class AutoJornalPDF:
 				]
 
 				# TODO: CHANGE 'TO_EMAIL' SELF.PROFESSOR_EMAIL
-				email_sender.send('vhernandezcastro@gmail.com', self.subject, content)
+				email_sender.send(user['email'], self.subject, content)
 				database.CreateReport(sd1, ed1, sd2, ed2, user['id'])
 			except:
 				os.remove(os.path.join(self.pdfs_path, pdf_filename))
-				raise Exception('Email could not be sent.')
-			finally:
 				database.Close()
+				raise Exception('Email could not be sent.')
+				
+
+		database.Close()
 
 
 
