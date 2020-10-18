@@ -153,15 +153,15 @@ def main():
 	'''This should only be run once in a lifetime'''
 
 	# Create database
-	database = AutoJornalDB('autojornal.db')
+	database = AutoJornalDB('AutoJornal.db')
 	database.Connect()
 	database.CreateDB()
 
 	# Insert dummy data
 	database.CreateUser('Héctor Carrión', 'hector.carrion@upr.edu', '', 'hector.jpg')
 	database.CreateUser('Víctor A. Hernández', 'victor.hernandez17@upr.edu', '', 'victor.jpg')
-	database.CreateReport(date(2020, 9, 28), date(2020, 10, 2), date(2020, 10, 5), date(2020, 10, 9), 1)
-	database.CreateReport(date(2020, 9, 28), date(2020, 10, 2), date(2020, 10, 5), date(2020, 10, 9), 2)
+	database.CreateReport(date(2020, 9, 14), date(2020, 9, 18), date(2020, 9, 21), date(2020, 9, 25), 1)
+	database.CreateReport(date(2020, 9, 14), date(2020, 9, 18), date(2020, 9, 21), date(2020, 9, 25), 2)
 	database.Close()
 
 

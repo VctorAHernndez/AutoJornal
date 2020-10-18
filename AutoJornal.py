@@ -6,19 +6,24 @@ from AutoJornalSMTP import AutoJornalSMTP
 
 
 
-SUBJECT = 'Horas'
+SUBJECT = 'Jornal a firmar'
 BODY = '''Saludos Profesor,
 
 Rosita nos pidió que verifiques las horas y firmes antes de enviárselas a ella.
 
-Gracias'''
+¡Gracias!
+
+Nota: este email fué generado automáticamente por nuestro nuevo sistema AutoJornal.
+Cualquier problema favor de avisarnos: <a href="mailto:hector.carrion@upr.edu">hector.carrion@upr.edu</a>
+<a href="mailto:victor.hernandez17@upr.edu">victor.hernandez17@upr.edu</a>
+'''
 
 
 
 class AutoJornal:
 
 	def __init__(self):
-		self.db_name = 'autojornal.db'
+		self.db_name = 'AutoJornal.db'
 
 		self.font_path = 'fonts/SFNS.ttf'
 		self.pdfs_path = 'pdfs/'
@@ -104,6 +109,7 @@ class AutoJornal:
 				# TODO: CHANGE 'TO_EMAIL' SELF.PROFESSOR_EMAIL
 				email_sender.send(user['email'], self.subject, content)
 				database.CreateReport(sd1, ed1, sd2, ed2, user['id'])
+				print('Email sent to:', user['email'])
 			except:
 				os.remove(os.path.join(self.pdfs_path, pdf_filename))
 				database.Close()
