@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS user (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name TEXT NOT NULL,
+	email TEXT NOT NULL,
+	app_password TEXT,
+	skeleton_filename TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS report (
+	id INTEGER PRIMARY KEY,
+	start_date1 DATE NOT NULL,
+	start_date2 DATE NOT NULL,
+	end_date1 DATE NOT NULL,
+	end_date2 DATE NOT NULL,
+	id_user INTEGER NOT NULL,
+	FOREIGN KEY(id_user) REFERENCES user(id)
+);
