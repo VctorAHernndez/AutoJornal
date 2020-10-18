@@ -15,7 +15,7 @@ Gracias'''
 
 
 
-class AutoJornalPDF:
+class AutoJornal:
 
 	def __init__(self):
 		self.db_name = 'autojornal.db'
@@ -115,7 +115,7 @@ class AutoJornalPDF:
 
 
 def main():
-	pdf_generator = AutoJornalPDF()
+	pdf_generator = AutoJornal()
 	pdf_generator.AddReport()
 
 
