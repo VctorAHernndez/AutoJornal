@@ -159,9 +159,9 @@ def main():
 
 	# Insert dummy data
 	database.CreateUser('Héctor Carrión', 'hector.carrion@upr.edu', '', 'hector.jpg')
-	# database.CreateUser('Víctor A. Hernández', 'victor.hernandez17@upr.edu', '', 'victor.jpg')
+	database.CreateUser('Víctor A. Hernández', 'victor.hernandez17@upr.edu', '', 'victor.jpg')
 	database.CreateReport(date(2020, 9, 28), date(2020, 10, 2), date(2020, 10, 5), date(2020, 10, 9), 1)
-	# database.CreateReport(date(2020, 9, 28), date(2020, 10, 2), date(2020, 10, 5), date(2020, 10, 9), 2)
+	database.CreateReport(date(2020, 9, 28), date(2020, 10, 2), date(2020, 10, 5), date(2020, 10, 9), 2)
 	database.Close()
 
 
