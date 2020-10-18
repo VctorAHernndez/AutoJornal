@@ -7,6 +7,7 @@ Run the following lines to create a virtual environment & install the dependenci
 python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
+sudo apt install libtiff5
 ```
 
 ## Usage
