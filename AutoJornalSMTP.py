@@ -6,23 +6,20 @@ import yagmail
 
 dotenv.load_dotenv()
 FROM_EMAIL = os.getenv('FROM_EMAIL')
-FROM_PASSWORD = os.getenv('FROM_PASSWORD')
+APP_PASSWORD = os.getenv('APP_PASSWORD')
 
 
 
 class AutoJornalSMTP:
 
-	def __init__(self, from_email=FROM_EMAIL, from_password=FROM_PASSWORD):
+	def __init__(self, from_email=FROM_EMAIL, app_password=APP_PASSWORD):
 		self.from_email = from_email
-		self.from_password = from_password
+		self.app_password = app_password
 
-	def listen(self):
-		pass
 
 	def send(self, to_email, subject, content):
-
 		try:
-			email = yagmail.SMTP(self.from_email, self.from_password)
+			email = yagmail.SMTP(self.from_email, self.app_password)
 			email.send(to_email, subject, content)
 		except:
 			raise Exception(f'Could not send email to {to_email}!')

@@ -1,7 +1,5 @@
 .env
 env/
 __pycache__
-test.txt
-autojornal.db
 AutoJornal.db
 out.log
