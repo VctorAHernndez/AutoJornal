@@ -20,7 +20,7 @@ class AutoJornalDB:
 			self.c = self.conn.cursor()
 			return 1
 		except:
-			return 0
+			raise Exception('Could not connect to database!')
 
 
 	def Close(self):
@@ -31,33 +31,36 @@ class AutoJornalDB:
 			self.conn.close()
 			return 1
 		except:
-			return 0
+			raise Exception('Could not close database!')
 
 	
 	def CreateDB(self):
 		'''Creates DB if it doesn't exist already'''
 
-		self.c.execute('''
-			CREATE TABLE IF NOT EXISTS user (
-				id INTEGER PRIMARY KEY AUTOINCREMENT,
-				name TEXT NOT NULL,
-				email TEXT NOT NULL,
-				app_password TEXT,
-				skeleton_filename TEXT NOT NULL
-			);
-		''')
+		try:
+			self.c.execute('''
+				CREATE TABLE IF NOT EXISTS user (
+					id INTEGER PRIMARY KEY AUTOINCREMENT,
+					name TEXT NOT NULL,
+					email TEXT NOT NULL,
+					app_password TEXT,
+					skeleton_filename TEXT NOT NULL
+				);
+			''')
 
-		self.c.execute('''
-			CREATE TABLE IF NOT EXISTS report (
-				id INTEGER PRIMARY KEY,
-				start_date1 DATE NOT NULL,
-				end_date1 DATE NOT NULL,
-				start_date2 DATE NOT NULL,
-				end_date2 DATE NOT NULL,
-				id_user INTEGER NOT NULL,
-				FOREIGN KEY(id_user) REFERENCES user(id)
-			);
-		''')
+			self.c.execute('''
+				CREATE TABLE IF NOT EXISTS report (
+					id INTEGER PRIMARY KEY,
+					start_date1 DATE NOT NULL,
+					end_date1 DATE NOT NULL,
+					start_date2 DATE NOT NULL,
+					end_date2 DATE NOT NULL,
+					id_user INTEGER NOT NULL,
+					FOREIGN KEY(id_user) REFERENCES user(id)
+				);
+			''')
+		except:
+			raise Exception('Could not create database!')
 
 
 	def CreateUser(self, name, email, app_password, skeleton_filename):
@@ -73,7 +76,7 @@ class AutoJornalDB:
 			self.c.execute(query)
 			return self.c.lastrowid
 		except:
-			raise
+			raise Exception('Could not create user!')
 
 
 	def CreateReport(self, start_date1, end_date1, start_date2, end_date2, id_user):
@@ -89,7 +92,7 @@ class AutoJornalDB:
 			self.c.execute(query)
 			return self.c.lastrowid
 		except:
-			raise
+			raise Exception('Could not create report!')
 
 
 	def FetchLastReport(self, id_user):
@@ -105,7 +108,7 @@ class AutoJornalDB:
 			report = self.c.fetchone()
 			return report
 		except:
-			return None
+			raise Exception('Could not fetch last report!')
 
 
 	def FetchUsers(self):
@@ -129,7 +132,7 @@ class AutoJornalDB:
 
 			return dicts
 		except:
-			return None
+			raise Exception('Could not fetch users!')
 
 
 	def FetchReports(self, id_user):
@@ -145,7 +148,7 @@ class AutoJornalDB:
 			reports = self.c.fetchall()
 			return reports
 		except:
-			return None
+			raise Exception('Could not fetch reports!')
 
 
 
