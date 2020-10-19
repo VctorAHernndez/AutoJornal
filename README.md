@@ -22,8 +22,7 @@ FROM_EMAIL=your@gmail.here
 APP_PASSWORD=your-app-password-here
 ```
 
-Create a cron job that will execute the AutoJornal scripts:
+Create a cron job that will execute `main.py` every two weeks by running the `crontab -e` command and adding the line at the end of the cron file:
 ```
-crontab -e
 0 8 * * Tue /home/pi/AutoJornal/cron.sh > /home/pi/AutoJornal/out.log 2>&1
 ```
